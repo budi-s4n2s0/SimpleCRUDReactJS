@@ -5,6 +5,7 @@ import { useState } from "react";
 import { uid } from "uid";
 
 function App() {
+  //object get set data contact
   const [contacts, setContacts] = useState([
     {
       id: 1,
@@ -23,13 +24,16 @@ function App() {
     },
   ]);
 
+  // object get set Form
   const [formData, setFormData] = useState({
     name: "",
     telp: "",
   });
 
+  // object get set isUpdate, jika ada update
   const [isUpdate, setIsUpdate] = useState({ id: null, status: false });
 
+  // funtion reset Form
   function resetFormData() {
     setFormData({
       name: "",
@@ -37,16 +41,19 @@ function App() {
     });
   }
 
+  //function reset update
   function resetIsUpdate() {
     setIsUpdate({ id: null, status: false });
   }
 
+  //handle onChange
   function handleChange(e) {
     let data = { ...formData };
     data[e.target.name] = e.target.value;
     setFormData(data);
   }
 
+  //handle onSubmit
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -75,6 +82,7 @@ function App() {
     resetIsUpdate(); //reset penanda update
   }
 
+  //handle edit
   function handleEdit(id) {
     let data = [...contacts];
     let foundData = data.find((contact) => contact.id === id);
@@ -82,6 +90,7 @@ function App() {
     setIsUpdate({ id: id, status: true });
   }
 
+  //handle delete
   function handleDelete(id) {
     let data = [...contacts];
     let filterData = data.filter((contact) => contact.id !== id);
